@@ -113,19 +113,27 @@ console.log(finalScore(inning, 9));
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
 function getInningScore(inning, num) {
-  const getInning = [];
-  let homeScore = 0;
-  let awayScore = 0;
-
-  for (let i = 0; i < 9; i++) {
-    const currentScore = num(inning);
-    homeScore = homeScore + currentScore.Home;
-    awayScore = awayScore + currentScore.Away;
-    getInning.push(`Away ${currentScore.Away} - Home ${currentScore.Home}`);
-  }
-  return getInningScore(inning, 9);
+  return {
+    Home: inning(),
+    Away: inning(),
+  };
 }
-console.log(getInningScore(inning, finalScore));
+console.log(getInningScore(inning, 9));
+
+// function getInningScore(inning, num) {
+//   const getInning = [];
+//   let homeScore = 0;
+//   let awayScore = 0;
+
+//   // for (let i = 0; i < 9; i++) {
+//   //   const currentScore = num(inning);
+//   //   homeScore = homeScore + currentScore.Home;
+//   //   awayScore = awayScore + currentScore.Away;
+//   //   getInning.push(`Away ${currentScore.Away} - Home ${currentScore.Home}`);
+//   // }
+//   return getInningScore(inning, 9);
+// }
+// console.log(getInningScore(inning, finalScore));
 
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
