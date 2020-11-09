@@ -205,7 +205,7 @@ function scoreboard(getInningScore, inning, num) {
     homeScore = homeScore + currentScore.Home;
     awayScore = awayScore + currentScore.Away;
     gameScores.push(
-      `Period ${i + 1}: Away ${currentScore.Away} - Home ${currentScore.Home}`
+      `Inning ${i + 1}: Away ${currentScore.Away} - Home ${currentScore.Home}`
     );
   }
 
