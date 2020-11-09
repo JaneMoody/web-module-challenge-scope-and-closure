@@ -44,7 +44,7 @@ Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
 
-- Closure is when everything, including the variables is enclosed within the function.
+- Closure is when the child can inherit everything from the parent and the child will call upon the parent function.
 
 2. Study the following code, then answer the questions below.
 
