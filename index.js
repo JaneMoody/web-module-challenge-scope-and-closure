@@ -141,10 +141,27 @@ Use the scoreboard function below to do the following:
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning (see example below)
+  Home and Away team's scores for each inning (see example below):
+
+    const totalGame = []; 
+  let homeScore = 0; 
+  let awayScore = 0;
+
   5. If there's a tie, add this message with the score to the end of the array: 
      "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there is no tie, add this message to the end of the array: 
+
+     for(let i = 0; i < 3; i++){ 
+    const currentScore = gameCB(scoreCB) 
+    homeScore = homeScore + currentScore.Home 
+    awayScore = awayScore + currentScore.Away 
+    totalGame.push(`Period ${i + 1}: Away ${currentScore.Away} - Home ${currentScore.Home}`); 
+  } 
+   
+  return totalGame;  
+} 
+console.log(totalGameScore(score, hockeyGame));
+
      "Final Score: Away 13 - Home 11"  (see no tie example below)
   HINT: `getInningScore` should be invoked by `scoreboard` and use `inning` to get and return the scores back to `scoreboard`
   
@@ -178,10 +195,24 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore, inning, num) {
+  const gameScores = [];
+  let homeScore = 0;
+  let awayScore = 0;
+
+  for (let i = 0; i < 9; i++) {
+    const currentScore = inning(num);
+    homeScore = homeScore + currentScore.Home;
+    awayScore = awayScore + currentScore.Away;
+    gameScores.push(
+      `Period ${i + 1}: Away ${currentScore.Away} - Home ${currentScore.Home}`
+    );
+  }
+
+  return gameScores;
 }
 
+console.log(scoreboard(getInningScore, inning, 9));
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
   console.log("its working");
