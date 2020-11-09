@@ -2,24 +2,27 @@
 
 /**Example Task : processFirstItem()
  * This example shows how you might go about solving the rest of the tasks
- * 
+ *
  * Use the higher order function processFirstItem below to do the following:
  *  1. Receive an array of strings in a parameter
  *  2. Receive a callback function that takes a string as its argument in a parameter
- *  3. Return the result of invoking the callback function and passing in the FIRST 
+ *  3. Return the result of invoking the callback function and passing in the FIRST
  *     element in the array as the argument
- * 
+ *
  * The following code is demonstrating a way of completing this task
  * It returns the string `foofoo`
-*/
+ */
 
 function processFirstItem(stringList, callback) {
-  return callback(stringList[0])
+  return callback(stringList[0]);
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+console.log(
+  processFirstItem(["foo", "bar"], function (str) {
+    return str + str;
+  })
+);
 
 // ⭐️ Example Challenge END ⭐️
-
 
 ///// M V P ///////
 
@@ -28,22 +31,27 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
+  * Counter 1 a local variable because the variable is inside the function.
+  * Clounter 2 has a global variable because the variable is outside the function but the counter is calling upon the variable declared outside the function.
   
   2. Which of the two uses a closure? How can you tell?
+  * Closure is inside counter1 because the variable is inside (enclosed) in counter1.
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     *Counter1 would be perferrable when you are going to nest a function, whereas counter2 would be better when you are calling upon the first counter. We cn pass the variable down to the children.
 */
 
 // counter1 code
 function counterMaker() {
   let count = 0;
   return function counter() {
-   return count++;
-  }
+    return count++;
+  };
 }
 
 const counter1 = counterMaker();
+debugger;
 
 // counter2 code
 let count = 0;
@@ -51,8 +59,7 @@ let count = 0;
 function counter2() {
   return count++;
 }
-
-
+debugger;
 /* Task 2: inning() 
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
@@ -60,13 +67,11 @@ Use the inning function below to do the following:
   NOTE: You will be using this function over and over again in the tasks below
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
-
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning() {
+  return Math.floor(Math.random() * Math.floor(2));
 }
 
+inning();
 /* Task 3: finalScore()
 Use the finalScore function below to do the following:
   1. Receive the callback function `inning` that was created in Task 2 
@@ -78,22 +83,50 @@ For example: invoking finalScore(inning, 9) might return this object:
   "Home": 11,
   "Away": 5
 }
-*/ 
+*/
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
-
+function finalScore(inning, num) {
+  return {
+    Home: inning(),
+    Away: inning(),
+  };
 }
+console.log(finalScore(inning, 9));
+
+// How is my code unrechable?
+
+// let homeScore = 0;
+// let awayScore = 0;
+
+// for (let i = 0; i < 5; i++) {
+//   const currentScore = num(inning);
+//   homeScore = homeScore + currentScore.Home;
+//   awayScore = awayScore + currentScore.Away;
+//   finalScore.push(`Away ${currentScore.Away} - Home ${currentScore.Home}`);
+// }
+
+// return finalScore(inning, 9);
 
 /* Task 4: 
 // create a function called getInningScore 
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
+function getInningScore(inning, num) {
+  const getInning = [];
+  let homeScore = 0;
+  let awayScore = 0;
+
+  for (let i = 0; i < 9; i++) {
+    const currentScore = num(inning);
+    homeScore = homeScore + currentScore.Home;
+    awayScore = awayScore + currentScore.Away;
+    getInning.push(`Away ${currentScore.Away} - Home ${currentScore.Home}`);
+  }
+  return getInningScore(inning, 9);
 }
+console.log(getInningScore(inning, finalScore));
+
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
   1. Receive a callback function, that you create, called `getInningScore`
@@ -137,20 +170,16 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-
 function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
 
-
-
-
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
-function foo(){
-  console.log('its working');
-  return 'bar';
+function foo() {
+  console.log("its working");
+  return "bar";
 }
-export default{
+export default {
   foo,
   processFirstItem,
   counter1,
@@ -159,4 +188,4 @@ export default{
   finalScore,
   getInningScore,
   scoreboard,
-}
+};
